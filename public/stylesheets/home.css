@@ -1,0 +1,28 @@
+html,body{
+    height: 100%;
+    color: #343434;
+    box-sizing: border-box;
+}
+.home{
+    height: 100%;
+}
+.home-top{
+    height: 100px;
+}
+.home-bottom{
+    height: calc(100% - 100px);
+}
+.home-navbar{
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+.home-content{
+    width: 80%;
+    height: 100%;
+    float: left;
+}
+.home .layui-nav-tree{
+    width: 100%;
+    height: 100%;
+}
