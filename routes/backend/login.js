@@ -7,11 +7,17 @@ router.get('/' , function(req,res,next){
 })
 
 router.post('/' , function(req,res,next){
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    console.log(123)
+    if(req.body.userName==1){
+        res.send({
+            code:200,
+            msg:'登陆成功'
+        })
+    }else{
+        res.send({
+            code:400,
+            msg:'登陆失败'
+        })
+    }
 })
 
 module.exports = router;

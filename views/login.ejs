@@ -43,9 +43,12 @@
                     type:'post',
                     url:'/login',
                     data:data.field,
-                    contentType:'application/json',
                     success:function(d){
-                        // window.location.href = 'home'
+                        if(d.code==200){
+                            window.location.href = 'test1'
+                        }else{
+                            layer.msg('登陆失败', {icon: 5});
+                        }
                     }
                 });
             });
