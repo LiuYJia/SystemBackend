@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { testPage: 'Express' });
-});
+router.use('/', require('./backend/login'));
+router.use('/home', require('./backend/home'));
+router.use('/test1', require('./backend/test1'));
+router.use('/test2', require('./backend/test2'));
 
 module.exports = router;

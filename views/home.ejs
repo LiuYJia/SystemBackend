@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>管理系统</title>
+        <link rel='stylesheet' href='/stylesheets/home.css' />
+        <link rel="stylesheet" href="/layui/css/layui.css">    
+    </head>
+    <body>
+        <div class="home">
+            <div class="home-top">
+                <% include ./component/header %>
+            </div>
+            <div class="home-bottom">
+            
+                <div class="home-navbar">
+                    <% include ./component/navbar %>
+                </div>
+            
+                <div class="home-content">
+                    <% if(locals.page == 'test1'){ %>
+                        <% include ./test1 %>
+                    <% } %>
+        
+                    <% if(locals.page == 'test2'){ %>
+                        <% include test2 %>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="/layui/layui.js"></script>
+    <script>
+
+        layui.use('form', function(){
+            var form = layui.form;
+            form.on('submit(login-btn)', function(data){
+                console.log(data.field)
+            });
+        });
+
+        layui.use('element', function(){
+            var element = layui.element;
+            element.on('nav(leftNavbar)', function(elem){
+                console.log(elem);
+            });
+        });
+
+    </script>
+</html>
