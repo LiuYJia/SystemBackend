@@ -2,8 +2,12 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/' , function(req,res,next){
-    console.log('ssssssssssssss')
-    res.render('home', { title: 'test1', page:'test1' });
+
+    res.render('index', {
+        title: '测试-测试1',
+        page:'test1',
+        user:req.cookies.user
+    });
 })
 
 module.exports = router;

@@ -5,12 +5,13 @@
         <link rel='stylesheet' href='/stylesheets/login.css' />
         <link rel="stylesheet" href="/layui/css/layui.css">    
         <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+        <link rel="shortcut icon" href="#" /> 
     </head>
     <body>
         <div class="login">
             <div class="login-form">
                 <h2 class="login-form-title">后 台 管 理 系 统</h2>
-                <form class="layui-form  layui-form-pane" action="/home">
+                <form class="layui-form  layui-form-pane">
                     <div class="layui-form-item">
                         <label for="" class="layui-form-label">账号：</label>
                         <div class="layui-input-block">
@@ -20,7 +21,7 @@
                     <div class="layui-form-item">
                         <label for="" class="layui-form-label">密码：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="userPassword" required lay-verify="userPassword"  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                            <input type="text" name="password" required lay-verify="password"  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item layui-form-item-btn">
@@ -38,16 +39,15 @@
   
             //监听提交
             form.on('submit(login-btn)', function(data){
-                console.log(data.field)
                 $.ajax({
                     type:'post',
                     url:'/login',
                     data:data.field,
                     success:function(d){
                         if(d.code==200){
-                            window.location.href = 'test1'
+                            window.location.href = 'home'
                         }else{
-                            layer.msg('登陆失败', {icon: 5});
+                            layer.msg(d.msg, {icon: 5});
                         }
                     }
                 });
@@ -60,7 +60,7 @@
                         return '请输入用户名';
                     }
                 },
-                userPassword: function(value){
+                passWord: function(value){
                     if(value.length == 0){
                         return '请输入密码';
                     }
