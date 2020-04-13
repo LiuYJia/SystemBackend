@@ -1,1 +1,10 @@
 <%= locals.page %>
+<form action="/test1" method="post">
+    <textarea name="myEdit" id="myEdit" rows="10" cols="80"></textarea>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+         CKEDITOR.replace( 'myEdit' );
+    </script>
+
+    <button id="testBtn" type="submit">保存</button>
+</form>
