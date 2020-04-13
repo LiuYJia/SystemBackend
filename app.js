@@ -25,7 +25,8 @@ app.use(session({
     httpOnly: true,//只能被web server访问
     secure: false,//只能被HTTPS使用，类型Boolean，默认为false
     // expires:Date类型，若为0则浏览器关闭后
-    maxAge: 1000*10 }
+    // maxAge: 1000*10 
+  }
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));

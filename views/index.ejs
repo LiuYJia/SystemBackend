@@ -4,20 +4,19 @@
         <title>管理系统</title>
         <link rel='stylesheet' href='/stylesheets/index.css' />
         <link rel='stylesheet' href='/stylesheets/header.css' />
+        <link rel='stylesheet' href='/stylesheets/admin/adminMessage.css' />
         <link rel="stylesheet" href="/layui/css/layui.css">   
         <link rel="shortcut icon" href="#" /> 
     </head>
     <body>
         <div class="indexPage">
 
-            <% include ./component/header %>
+            <div class="indexPage-navbar">
+                <% include ./component/navbar %>
+            </div>
 
-            <div class="indexPage-bottom">
-            
-                <div class="indexPage-navbar">
-                    <% include ./component/navbar %>
-                </div>
-            
+            <div class="indexPage-right">
+                <% include ./component/header %>
                 <div class="indexPage-content">
                     <div class="indexPage-bread">
                         <span></span>
@@ -38,6 +37,10 @@
                             <% include ./home %>
                         <% } %>
 
+                        <% if(locals.page == 'adminMessage'){ %>
+                            <% include ./adminMessage %>
+                        <% } %>
+
                         <% if(locals.page == 'test1'){ %>
                             <% include ./test1 %>
                         <% } %>
@@ -51,6 +54,7 @@
         </div>
     </body>
     <script src="/layui/layui.js"></script>
+    <script src="/javascripts/adminMessage.js"></script>
     <script src="/jquery/jquery-3.4.1.min.js"></script>
 
     <script>
@@ -62,12 +66,7 @@
             });
         });
 
-        layui.use('element', function(){
-            var element = layui.element;
-            element.on('nav(leftNavbar)', function(elem){
-                console.log(elem);
-            });
-        });
+        layui.use('element');
 
         $('.header-exit').off('click').on('click',function(){
             layer.open({
@@ -99,5 +98,6 @@
             if(cval!=null)
                 document.cookie= name + "="+cval+";expires="+exp.toGMTString();
         }
+
     </script>
 </html>

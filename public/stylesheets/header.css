@@ -1,21 +1,15 @@
 .header{
-    height: 80px;
+    height: 61px;
     font-size: 20px;
-    line-height: 80px;
-    background: #409eff;
-    color: white;
-    display: flex;
+    line-height: 61px;
+    background: rgb(57, 61, 73);
+    color: rgb(189, 189, 192);
 }
-.header-left{
-    width: 70%;
-    padding-left: 50px;
-    font-size: 20px;
-}
-.header-right{
-    width: 30%;
+.header .layui-nav{
     text-align: right;
-    padding-right: 50px;
+    width: 100%;
+    background: rgb(57, 61, 73);
 }
-.header-exit{
-    cursor: pointer;
+.header .layui-nav dd{
+    text-align: center;
 }
