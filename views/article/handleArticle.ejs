@@ -1,0 +1,42 @@
+<div class="handleArticle">
+    <form class="layui-form" action="">
+        <div class="layui-form-item" style="display: none;">
+            <label class="layui-form-label">id</label>
+            <div class="layui-input-block ">
+                <input type="text" name="id" value="<%= result.id %>" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-block handleArticle-title">
+                <input type="text" name="userName" value="<%= result.name %>" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">类别</label>
+            <div class="layui-input-block">
+              <select name="sort" lay-filter="sort">
+                <option value=""></option>
+                <option value="1">一些笔记</option>
+                <option value="2">一些杂文</option>
+              </select>
+            </div>
+          </div>
+        <div class="layui-form-item layui-form-ckeditor">
+            <label class="layui-form-label">内容</label>
+            <div class="layui-input-block">
+                <textarea name="myEdit" id="myEdit"  placeholder="请输入内容" class="layui-textarea"></textarea>
+                <script src="/ckeditor/ckeditor.js"></script>
+                <script>
+                    CKEDITOR.replace( 'myEdit' );
+                </script>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" lay-submit lay-filter="handleArticleSave">保存</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>

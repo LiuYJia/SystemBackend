@@ -16,7 +16,7 @@ router.get('/' , function(req,res,next){
         var _sql = 'select * from admin'
         connection.query(_sql,function(err,result){
             res.render('index', {
-                title: '个人资料',
+                title: '设置-个人资料',
                 page:'adminMessage',
                 user:req.cookies.user,
                 result:JSON.parse(JSON.stringify(result))[0]
@@ -38,7 +38,6 @@ router.post('/' , function(req,res,next){
     db.getConnection(function(err,connection){
         var _sql = 'update admin set name = ?,password = ? where id = ?';
         connection.query(_sql,[userName,passWord,id],function(err,result){
-            console.log(result.affectedRows)
             if(result.affectedRows==1){
                 res.send({
                     code:200,

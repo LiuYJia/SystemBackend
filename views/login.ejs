@@ -4,7 +4,6 @@
         <title>欢迎登陆</title>
         <link rel='stylesheet' href='/stylesheets/login.css' />
         <link rel="stylesheet" href="/layui/css/layui.css">    
-        <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
         <link rel="shortcut icon" href="#" /> 
     </head>
     <body>
@@ -36,7 +35,6 @@
         layui.use('form', function(){
 
             var form = layui.form;
-  
             //监听提交
             form.on('submit(login-btn)', function(data){
                 $.ajax({
@@ -73,3 +71,4 @@
         });
     </script>
 </html>
+<script src="/jquery/jquery-3.4.1.min.js"></script>

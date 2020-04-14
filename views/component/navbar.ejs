@@ -3,17 +3,32 @@
     <li class="layui-nav-item layui-nav-itemed">
         <a <% if(locals.page == "home"){ %>
             class="layui-this"
-        <% } %> href="/home">首页</a>
+        <% } %> href="/home"><i class="layui-icon layui-icon-home"></i><span>首页</span></a>
     </li>
     <li class="layui-nav-item layui-nav-itemed">
-        <a href="javascript:void(0);">测试项</a>
+        <a href="javascript:void(0);"><i class="layui-icon layui-icon-read"></i><span>文章管理</span></a>
         <dl class="layui-nav-child">
-            <dd <% if(locals.page == "test1"){ %>
+            <dd <% if(locals.page == "articleList"){ %>
                 class="layui-this"
-            <% } %> ><a href="/test1">选项1</a></dd>
-            <dd <% if(locals.page == "test2"){ %>
+            <% } %> ><a href="/articleList"><span>文章列表</span></a></dd>
+        </dl>
+        <dl class="layui-nav-child">
+            <dd <% if(locals.page == "handleArticle"){ %>
                 class="layui-this"
-            <% } %> ><a href="/test2">选项2</a></dd>
+            <% } %> ><a href="/handleArticle"><span>编辑</span></a></dd>
+        </dl>
+        <dl class="layui-nav-child">
+            <dd <% if(locals.page == "articleSort"){ %>
+                class="layui-this"
+            <% } %> ><a href="/articleSort"><span>文章分类</span></a></dd>
+        </dl>
+    </li>
+    <li class="layui-nav-item layui-nav-itemed">
+        <a href="javascript:void(0);"><i class="layui-icon layui-icon-set"></i><span>设置</span></a>
+        <dl class="layui-nav-child">
+            <dd <% if(locals.page == "adminMessage"){ %>
+                class="layui-this"
+            <% } %> ><a href="/adminMessage"><span>个人资料</span></a></dd>
         </dl>
     </li>
 </ul>

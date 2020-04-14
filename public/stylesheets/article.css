@@ -1,0 +1,39 @@
+.handleArticle{
+    height: 100%;
+    overflow: auto;
+}
+.handleArticle .layui-form{
+    height: calc(100% - 50px);
+    width: 90%;
+    padding-top: 50px;
+}
+.handleArticle .layui-form-select{
+    width: 500px;
+}
+
+.layui-form-ckeditor .layui-input-block{
+    height: 50%;
+}
+.handleArticle-title{
+    width: 500px;
+}
+#cke_1_contents{
+    height: 260px!important;
+}
+
+.articleList{
+    height: calc(100% - 40px);
+    padding: 20px 20px;
+}
+.articleListSearch{
+    height: 60px;
+}
+.articleListTableDiv{
+    height: calc(100% - 140px);
+}
+.articleListSearch{
+    display: flex;
+}
+.articleList .layui-form-item button{
+    margin-left: 50px;
+}
