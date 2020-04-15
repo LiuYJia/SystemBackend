@@ -10,15 +10,14 @@
 .handleArticle .layui-form-select{
     width: 500px;
 }
-
-.layui-form-ckeditor .layui-input-block{
-    height: 50%;
+.layui-form-mdeditor{
+    height: calc(100% - 200px);
+}
+.layui-form-mdeditor .layui-input-block{
+    height: 100%;
 }
 .handleArticle-title{
     width: 500px;
-}
-#cke_1_contents{
-    height: 260px!important;
 }
 
 .articleList{

@@ -22,13 +22,22 @@
               </select>
             </div>
         </div>
-        <div class="layui-form-item layui-form-ckeditor">
+        <div class="layui-form-item layui-form-mdeditor">
             <label class="layui-form-label">内容</label>
             <div class="layui-input-block">
-                <textarea name="myEdit" id="myEdit"  placeholder="请输入内容" class="layui-textarea"></textarea>
-                <script src="/ckeditor/ckeditor.js"></script>
-                <script>
-                    CKEDITOR.replace( 'myEdit' );
+                <div id="test-editor">
+                    <textarea style="display:none;"></textarea>
+                </div>
+                <script src="/jquery/jquery-3.4.1.min.js"></script>
+                <script src="/editor.md-master/editormd.min.js"></script>
+                <script type="text/javascript">
+                    $(function() {
+                        var editor = editormd("test-editor", {
+                            width  : "100%",
+                            height : "100%",
+                            path   : "/editor.md-master/lib/"
+                        });
+                    });
                 </script>
             </div>
         </div>
