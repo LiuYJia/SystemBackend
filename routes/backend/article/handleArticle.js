@@ -18,12 +18,37 @@ var getTime = require('../../../method/method')
 
 
 router.get('/' , function(req,res,next){
-    res.render('index', {
-        title: '文章管理-编辑',
-        page:'handleArticle',
-        user:req.cookies.user,
-        result:{}
-    });
+    console.log(req.url)
+    var id = req.url.split('=')[1]
+    console.log(id)
+    if(id){
+        var _sql = 'select * from article_list where id = ?'
+        db.on('connection',function(err){})
+        db.getConnection(function(err,connection){
+            connection.query(_sql,[id],function(err,result){
+                if(err){
+                    console.log(err)
+                    return
+                }
+                var result = JSON.parse(JSON.stringify(result))[0]
+                console.log(result)
+                res.render('index', {
+                    title: '文章管理-编辑',
+                    page:'handleArticle',
+                    user:req.cookies.user,
+                    result:result
+                });
+                connection.release()
+            })
+        })
+    }else{
+        res.render('index', {
+            title: '文章管理-编辑',
+            page:'handleArticle',
+            user:req.cookies.user,
+            result:{}
+        });
+    }
 })
 
 router.post('/saveArticle' , function(req,res,next){

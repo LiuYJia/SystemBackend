@@ -19,7 +19,9 @@ layui.use('form', function(){
             }
         });
     });
-
+    form.on('select(sort)',function(){
+        console.log(333)
+    })
     //自定义验证规则
     form.verify({
         userName: function(value){
@@ -59,6 +61,7 @@ layui.use('table', function(){
                 return
             }
             console.log(data[0])
+            window.location.href = '/handleArticle?articleId='+data[0].id
         },
         delete: function(){ //删除
             var checkStatus = table.checkStatus('idArticleListTable'),data = checkStatus.data;

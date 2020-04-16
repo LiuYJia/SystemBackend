@@ -13,9 +13,9 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">类别</label>
+            <label class="layui-form-label">类别<%= result.sort_id %></label>
             <div class="layui-input-block">
-              <select name="sort" lay-filter="sort">
+              <select name="sort" lay-filter="sort" value="<%= result.sort_id %>">
                 <option value=""></option>
                 <option value="1">一些笔记</option>
                 <option value="2">一些杂文</option>
@@ -26,7 +26,7 @@
             <label class="layui-form-label">内容</label>
             <div class="layui-input-block">
                 <div id="myEditor">
-                    <textarea style="display:none;" class="layui-textarea"></textarea>
+                    <textarea style="display:none;" class="layui-textarea"><%= result.content %></textarea>
                 </div>
                 <script src="/jquery/jquery-3.4.1.min.js"></script>
                 <script src="/editor.md-master/editormd.min.js"></script>
