@@ -1,21 +1,23 @@
 // 编辑
+function resetfunction(){
+    // $('.CodeMirror-sizer').html('')
+}
 layui.use('form', function(){
     var form = layui.form;
     //监听提交
     form.on('submit(handleArticleSave)', function(data){
-        console.log(data.field)
-        // $.ajax({
-        //     type:'post',
-        //     url:'/login',
-        //     data:data.field,
-        //     success:function(d){
-        //         if(d.code==200){
-        //             window.location.href = 'home'
-        //         }else{
-        //             layer.msg(d.msg, {icon: 5});
-        //         }
-        //     }
-        // });
+        $.ajax({
+            type:'post',
+            url:'/handleArticle/saveArticle',
+            data:data.field,
+            success:function(d){
+                if(d.code==200){
+                    layer.msg(d.msg, {icon: 1});
+                }else{
+                    layer.msg(d.msg, {icon: 5});
+                }
+            }
+        });
     });
 
     //自定义验证规则

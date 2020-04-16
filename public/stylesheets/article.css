@@ -19,6 +19,13 @@
 .handleArticle-title{
     width: 500px;
 }
+/* layui和editor冲突 */
+.handleArticle ol>li{
+    list-style: decimal;
+}
+.handleArticle ul>li{
+    list-style: disc;
+}
 
 .articleList{
     height: calc(100% - 40px);
