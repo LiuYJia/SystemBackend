@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80019
 File Encoding         : 65001
 
-Date: 2020-04-16 20:34:11
+Date: 2020-04-18 00:01:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -44,18 +44,12 @@ CREATE TABLE `article_list` (
   `browse_times` int DEFAULT '0',
   `sort_id` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of article_list
 -- ----------------------------
-INSERT INTO `article_list` VALUES ('1', '测试1', 'cdfdaasdfad', '2020-04-14 15:54:34', 'Liu', '1', '1');
-INSERT INTO `article_list` VALUES ('2', '测试2', 'asdsa', '2020-04-14 15:54:34', 'as', '5', '1');
-INSERT INTO `article_list` VALUES ('3', '发打发萨达阿斯顿发尬啥的发送到发送到发发发', 'aaaaa', '2020-04-14 17:02:34', 'sada', '3', '2');
-INSERT INTO `article_list` VALUES ('4', 'asdas', 'fa', '2020-04-14 15:54:43', 'sadas', '9', '1');
-INSERT INTO `article_list` VALUES ('5', 'sadfsa', 'sad', '2020-04-14 15:54:41', 'asd', '6', '1');
-INSERT INTO `article_list` VALUES ('6', 'safa阿萨德高度', '阿斯顿撒', '2020-04-14 15:54:37', 'sada', '7', '2');
-INSERT INTO `article_list` VALUES ('7', '盾构法发', '撒打算', '2020-04-14 15:54:39', 'sada', '6', '1');
+INSERT INTO `article_list` VALUES ('1', '测试1111', '123', '2020-04-17 17:11:04', 'Liu', '1', '2');
 INSERT INTO `article_list` VALUES ('8', '大分公司的', '阿萨德', '2020-04-16 16:59:28', '阿斯顿撒', '7', '1');
 INSERT INTO `article_list` VALUES ('9', '的撒发', '阿萨', '2020-04-14 17:01:02', 'asda', '5', '2');
 INSERT INTO `article_list` VALUES ('10', '公司', '的', '2020-04-30 17:00:22', '的首付多少', '6', '1');
@@ -64,6 +58,10 @@ INSERT INTO `article_list` VALUES ('12', '1', 'aaaaaaa', '2020-04-16 20:04:17', 
 INSERT INTO `article_list` VALUES ('13', '1', 'aaaaaaa', '2020-04-16 20:07:04', 'LiuYJia', '0', '1');
 INSERT INTO `article_list` VALUES ('14', '阿发', '# hahah\n- 列表\n### 你好\n[TOCM]', '2020-04-16 20:08:06', 'LiuYJia', '0', '2');
 INSERT INTO `article_list` VALUES ('15', '1', '# hahah\n- 列表\n### 你好\n[TOCM]', '2020-04-16 20:08:47', 'LiuYJia', '0', '1');
+INSERT INTO `article_list` VALUES ('16', 'test', '111', '2020-04-16 21:01:15', 'LiuYJia', '0', '1');
+INSERT INTO `article_list` VALUES ('17', '1', '1111', '2020-04-17 16:57:46', 'LiuYJia', '0', '1');
+INSERT INTO `article_list` VALUES ('18', '1', '11111', '2020-04-17 17:07:19', 'LiuYJia', '0', '1');
+INSERT INTO `article_list` VALUES ('19', 'seotest', 'dassdaasdas', '2020-04-18 00:00:26', 'LiuYJia', '0', '11');
 
 -- ----------------------------
 -- Table structure for article_sort
@@ -73,13 +71,14 @@ CREATE TABLE `article_sort` (
   `id` int NOT NULL AUTO_INCREMENT,
   `sort` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of article_sort
 -- ----------------------------
 INSERT INTO `article_sort` VALUES ('1', '一些杂文');
 INSERT INTO `article_sort` VALUES ('2', '一些笔记');
+INSERT INTO `article_sort` VALUES ('11', '一些SEO');
 
 -- ----------------------------
 -- Table structure for history_access

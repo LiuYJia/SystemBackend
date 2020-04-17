@@ -31,7 +31,16 @@
         </div>
     </body>
     <script src="/layui/layui.js"></script>
+    <script src="/jquery/jquery-3.4.1.min.js"></script>
     <script>
+
+        // 回车键触发表单提交
+        $(document).off('keydown').on('keydown',function(e){
+            if(e.keyCode==13){
+                $('.login .login-btn').trigger('click')
+            }
+        })
+
         layui.use('form', function(){
 
             var form = layui.form;
@@ -55,7 +64,7 @@
             form.verify({
                 userName: function(value){
                     if(value.length == 0){
-                        return '请输入用户名';
+                        return '请输入账号';
                     }
                 },
                 passWord: function(value){
@@ -71,4 +80,3 @@
         });
     </script>
 </html>
-<script src="/jquery/jquery-3.4.1.min.js"></script>

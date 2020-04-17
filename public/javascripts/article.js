@@ -19,9 +19,6 @@ layui.use('form', function(){
             }
         });
     });
-    form.on('select(sort)',function(){
-        console.log(333)
-    })
     //自定义验证规则
     form.verify({
         userName: function(value){
@@ -42,7 +39,6 @@ layui.use('form', function(){
 });
 
 //列表
-
 layui.use('table', function(){
 
     var table = layui.table;
@@ -69,6 +65,35 @@ layui.use('table', function(){
                 layer.msg('请选择一条记录',{icon:5});
                 return
             }
+            var arr = []
+            data.forEach(e => {
+                arr.push(e.id)
+            });
+            console.log(data)
+            $.ajax({
+                url:'/articleList/delelte',
+                type:'post',
+                data:{ids:arr.join(',')},
+                success:function(d){
+                    console.log(d)
+                    if(d.code==200){
+                        layer.msg(d.msg,{icon:1});
+                        table.reload('idArticleListTable', {
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            },
+                            where: {
+                                key: {
+                                    title: '',
+                                    sort: ''
+                                }
+                            }
+                        }, 'data');
+                    }else{
+                        layer.msg(d.msg,{icon:5});
+                    }
+                }
+            })
         },
         reload: function(){
             //执行重载
@@ -91,3 +116,56 @@ layui.use('table', function(){
         active[type] ? active[type].call(this) : '';
     });
 });
+
+
+
+$('.addSort').click(function(){
+    var _html = ` <div class="layui-form-item">
+        <label class="layui-form-label">分类</label>
+        <div class="layui-input-block">
+        </div>
+    </div>
+    `
+    layer.open({
+        type: 1,
+        title:'请输入分类', 
+        content: '<input type="text" id="addsortInput" name="title" class="layui-input">',
+        area:['300px','170px'],
+        btn:'确定',
+        yes:function(index){
+            var val = $('#addsortInput').val()
+            if(!val){
+                layer.msg('请输入值',{icon:5})
+                return
+            }
+            $.ajax({
+                url:'/articleSort/addSort',
+                type:'post',
+                data:{sort:val},
+                success:function(d){
+                    console.log(d)
+                    if(d.code==200){
+                        layer.close(index)
+                        window.location.href = '/articleSort'
+                    }else{
+                        layer.msg('保存失败',{icon:5})
+                    }
+                }
+            })
+        }
+      });
+})
+$('.articleSort-itemclose i').click(function(){
+    $.ajax({
+        url:'/articleSort/deleteSort',
+        type:'post',
+        data:{id:$(this).attr('data-id')},
+        success:function(d){
+            if(d.code==200){
+                window.location.href = '/articleSort'
+            }else{
+                layer.msg('删除失败',{icon:5})
+            }
+        }
+    })
+})

@@ -1,0 +1,11 @@
+<div class="articleSort">
+    <% result.forEach(function(e){ %>
+        <div class="articleSort-item">
+            <span class="articleSort-itemtxt"><%= e.sort %></span>
+            <span class="articleSort-itemclose"><i data-id="<%= e.id %>" class="layui-icon layui-icon-close-fill"></i></span>
+        </div>
+    <% }) %>
+    <div class="articleSort-item addSort">
+        添加
+    </div>
+</div>

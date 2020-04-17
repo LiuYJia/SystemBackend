@@ -18,9 +18,7 @@ var getTime = require('../../../method/method')
 
 
 router.get('/' , function(req,res,next){
-    console.log(req.url)
     var id = req.url.split('=')[1]
-    console.log(id)
     if(id){
         var _sql = 'select * from article_list where id = ?'
         db.on('connection',function(err){})
@@ -31,29 +29,48 @@ router.get('/' , function(req,res,next){
                     return
                 }
                 var result = JSON.parse(JSON.stringify(result))[0]
-                console.log(result)
-                res.render('index', {
-                    title: '文章管理-编辑',
-                    page:'handleArticle',
-                    user:req.cookies.user,
-                    result:result
-                });
+                connection.query('select * from article_sort',function(err,sortArr){
+                    sortArr.forEach(function(ele){
+                        ele.sord_id = ele.id
+                    })
+                    result.sortArr = sortArr
+                    res.render('index', {
+                        title: '文章管理-编辑',
+                        page:'handleArticle',
+                        user:req.cookies.user,
+                        result:result
+                    });
+                })
+                
                 connection.release()
             })
         })
     }else{
-        res.render('index', {
-            title: '文章管理-编辑',
-            page:'handleArticle',
-            user:req.cookies.user,
-            result:{}
-        });
+        db.on('connection',function(err){})
+        db.getConnection(function(err,connection){
+            connection.query('select * from article_sort',function(err,result){
+                if(err){
+                    console.log(err)
+                    return
+                }
+                result.forEach(function(ele){
+                    ele.sord_id = ele.id
+                })
+                res.render('index', {
+                    title: '文章管理-编辑',
+                    page:'handleArticle',
+                    user:req.cookies.user,
+                    result:{sortArr:result}
+                });
+                
+                connection.release()
+            })
+        })
     }
 })
 
 router.post('/saveArticle' , function(req,res,next){
     var id = req.body.id
-    console.log(req.body)
     var obj = {
         id:req.body.id,
         title:req.body.title,
@@ -64,30 +81,34 @@ router.post('/saveArticle' , function(req,res,next){
     }
     
     db.on('connection',function(err){})
-    // update table set [title=1,name=2] where id = 1
     if(!id){
-        var _sql = 'insert into article_list (title,content,date,author,browse_times,sort_id) values (?,?,?,?,?,?);'
-        db.getConnection(function(err,connection){
-            connection.query(_sql,[obj.title,obj.content,obj.date,obj.author,0,obj.sort],function(err,result){
-                if(err){
-                    console.log(err)
-                    return
-                }
-                if(result.affectedRows!=0){
-                    res.send({
-                        code:200,
-                        msg:'保存成功'
-                    })
-                }else{
-                    res.send({
-                        code:400,
-                        msg:'保存失败'
-                    })
-                }
-                connection.release()
-            })
-        })
+        var _sql = 'insert into article_list (title,content,date,author,browse_times,sort_id) values (?,?,?,?,?,?)'
+        var _sqlArr = [obj.title,obj.content,obj.date,obj.author,0,obj.sort]
+
+    }else{
+        var _sql = 'update article_list set title=?,sort_id=?,content=? where id = ?'
+        var _sqlArr = [obj.title,obj.sort,obj.content,id]
     }
+    db.getConnection(function(err,connection){
+        connection.query(_sql,_sqlArr,function(err,result){
+            if(err){
+                console.log(err)
+                return
+            }
+            if(result.affectedRows!=0){
+                res.send({
+                    code:200,
+                    msg:'保存成功'
+                })
+            }else{
+                res.send({
+                    code:400,
+                    msg:'保存失败'
+                })
+            }
+            connection.release()
+        })
+    })
 })
 
 router.post('/uploadImg',upload.single('editormd-image-file'), function(req,res,next){

@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
 router.use('/', require('./backend/login'));
 router.use('/login', require('./backend/login'));// 登陆
 

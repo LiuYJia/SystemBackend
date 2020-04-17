@@ -17,8 +17,10 @@
             <div class="layui-input-block">
               <select name="sort" lay-filter="sort" value="<%= result.sort_id %>">
                 <option value=""></option>
-                <option value="1">一些笔记</option>
-                <option value="2">一些杂文</option>
+                <% result.sortArr.forEach(function(e){ %>
+                    <option value="<%= e.id %>" <%= result.sort_id==e.id?'selected':''%> ><%= e.sort %></option>
+                <% }) %>
+                
               </select>
             </div>
         </div>

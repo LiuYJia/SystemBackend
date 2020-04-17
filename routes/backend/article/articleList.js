@@ -3,11 +3,20 @@ var router = express.Router();
 var db = require('../../../database/database')
 
 router.get('/' , function(req,res,next){
-    res.render('index', {
-        title: '文章管理-文章列表',
-        page:'articleList',
-        user:req.cookies.user
-    });
+    db.on('connection',function(){})
+    db.getConnection(function(err,connection){
+        var _sql = 'select * from article_sort';
+        connection.query(_sql,function(err,result){
+            console.log(result)
+            res.render('index', {
+                title: '文章管理-文章列表',
+                page:'articleList',
+                user:req.cookies.user,
+                result:result
+            });
+            connection.release()
+        })
+    })
 })
 
 router.get('/getList' , function(req,res,next){
@@ -15,7 +24,7 @@ router.get('/getList' , function(req,res,next){
     if(req.query.key){
         var title = req.query.key.title
         var sort = req.query.key.sort
-        var _sql = 'select * from article_list where 1 = 1';
+        var _sql = 'select al.*,sort.sort from article_list al left join article_sort sort on al.sort_id = sort.id  where 1 = 1';
         if(title){
             _sql += ' and title like "%' + title +'%" '
         }
@@ -23,7 +32,7 @@ router.get('/getList' , function(req,res,next){
             _sql += ' and sort_id = "'+sort+'" '
         }
     }else{
-        var _sql = 'select * from article_list'
+        var _sql = 'select al.*,sort.sort from article_list al left join article_sort sort on al.sort_id = sort.id '
     }
     var page = Number(req.query.page)
     var limit = Number(req.query.limit)
@@ -31,13 +40,11 @@ router.get('/getList' , function(req,res,next){
     db.on('connection',function(){})
     db.getConnection(function(err,connection){
         connection.query(_sql,function(err,result){
-            
             var _length = result.length
             var _result = result.splice(_start,limit)
             _result.forEach(ele => {
                 ele.date = new Date(ele.date).toLocaleString()
             });
-
             res.send({
                 code: 0,
                 msg: "success",
@@ -49,13 +56,28 @@ router.get('/getList' , function(req,res,next){
     })
 })
 
-router.post('/' , function(req,res,next){
-    res.render('index', {
-        title: '文章管理-文章列表',
-        page:'articleList',
-        user:req.cookies.user,
-        result:{}
-    });
+router.post('/delelte' , function(req,res,next){
+    var ids = req.body.ids
+    db.on('connection',function(){})
+    db.getConnection(function(err,connection){
+        var _sql = 'delete from article_list where id in ('+ids+')';
+        console.log(_sql)
+        connection.query(_sql,function(err,result){
+            console.log(result)
+            if(result.affectedRows!=0){
+                res.send({
+                    code:200,
+                    msg: '删除成功'
+                })
+            }else{
+                res.send({
+                    code:400,
+                    msg: '删除失败'
+                })
+            }
+            connection.release()
+        })
+    })
 })
 
 module.exports = router;
