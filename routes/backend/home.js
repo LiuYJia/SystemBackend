@@ -3,7 +3,6 @@ var db = require('../../database/database')
 var router = express.Router();
 
 router.get('/' , function(req,res,next){
-    
     db.on('connection',function(err,connection){
         if(err){
             console.log('连接失败……')

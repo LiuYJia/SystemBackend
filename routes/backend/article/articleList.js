@@ -20,7 +20,7 @@ router.get('/' , function(req,res,next){
 })
 
 router.get('/getList' , function(req,res,next){
-    console.log(req.query.key)
+    console.log(req.headers)
     if(req.query.key){
         var title = req.query.key.title
         var sort = req.query.key.sort

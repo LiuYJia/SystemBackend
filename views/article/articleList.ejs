@@ -1,26 +1,28 @@
 <div class="articleList">
 
     <div class="articleListSearch articleListTable">
-        <div class="layui-form-item">
-            <label class="layui-form-label">标题</label>
-            <div class="layui-input-block">
-                <input type="text" id="articleListTitle" name="title" class="layui-input">
+            <div class="layui-form-item">
+                <label class="layui-form-label">标题</label>
+                <div class="layui-input-block">
+                    <input type="text" id="articleListTitle" name="title" class="layui-input">
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">分类</label>
-            <div class="layui-input-block">
-                <select name="sort" lay-filter="sort" id="articleListSort" class="layui-select">
-                    <option value=""></option>
-                    <% result.forEach(function(e){ %>
-                        <option value="<%= e.id %>"><%= e.sort %></option>
-                    <% }) %>
-                </select>
+            <div class="layui-form-item">
+                <label class="layui-form-label">分类</label>
+                <div class="layui-input-block">
+                    <form action="" class="layui-form">
+                        <select name="sort" lay-filter="sort" id="articleListSort" class="layui-select">
+                            <option value=""></option>
+                            <% result.forEach(function(e){ %>
+                                <option value="<%= e.id %>"><%= e.sort %></option>
+                            <% }) %>
+                        </select>
+                    </form>
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <button class="layui-btn" data-type="reload">搜索</button>
-        </div>
+            <div class="layui-form-item">
+                <button class="layui-btn" data-type="reload">搜索</button>
+            </div>
     </div>
     <div class="articleListTableDiv">
         <div class="layui-btn-group articleListTable">

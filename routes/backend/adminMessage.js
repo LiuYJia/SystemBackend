@@ -3,14 +3,7 @@ var router = express.Router();
 var db = require('../../database/database')
 
 router.get('/' , function(req,res,next){
-    
-    db.on('connection',function(err,connection){
-        if(err){
-            console.log('连接失败……')
-            return
-        }
-        console.log('连接成功……')
-    })
+    db.on('connection',function(err,connection){})
 
     db.getConnection(function(err,connection){
         var _sql = 'select * from admin'

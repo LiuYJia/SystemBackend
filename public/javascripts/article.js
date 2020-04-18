@@ -36,8 +36,8 @@ layui.use('form', function(){
         //     '密码必须6到12位，且不能出现空格'
         // ]
     });
-});
 
+});
 //列表
 layui.use('table', function(){
 
@@ -115,6 +115,9 @@ layui.use('table', function(){
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
+
+    $(".sel_scrq").parent().css('overflow', 'visible');
+
 });
 
 
