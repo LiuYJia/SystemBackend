@@ -6,16 +6,16 @@ router.use('/login', require('./backend/login'));// 登陆
 
 router.use('/error', require('./backend/error'));// 404
 
-//前端请求只需验证请求来源
+//前端请求只需验证请求源
 router.get('*',function(req,res,next){
     console.log(req.headers)
-    if(req.headers.host!='localhost:3000'){
+    if(req.headers.origin!='http://localhost:8080'){
         res.redirect('/error')
         return;
     }
     res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
     next()
 })
 
