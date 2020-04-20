@@ -3,7 +3,6 @@ var router = express.Router();
 var db = require('../../database/database')
 
 router.get('/' , function(req,res,next){
-    console.log(req.param('userName'))
     res.render('login', { title: '登陆' });
 })
 

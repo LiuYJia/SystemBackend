@@ -4,9 +4,21 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
-
+var spawn = require('child_process').spawn;
 var routes = require('./routes');
 var app = express();
+console.log(__dirname)
+
+
+//子进程爬取ONE信息
+var child = spawn('node',['./main.js'])
+child.stdout.on('data', function (data) {
+  console.log('stdout: ' + data);
+});
+child.stderr.on('data', function (data) {
+  console.log('stderr: ' + data);
+});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views/'));
@@ -40,6 +52,7 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
+  console.log(err)
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

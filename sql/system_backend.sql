@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80019
 File Encoding         : 65001
 
-Date: 2020-04-18 00:01:54
+Date: 2020-04-20 20:52:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -94,3 +94,20 @@ CREATE TABLE `history_access` (
 -- Records of history_access
 -- ----------------------------
 INSERT INTO `history_access` VALUES ('1', '10');
+
+-- ----------------------------
+-- Table structure for one_tips
+-- ----------------------------
+DROP TABLE IF EXISTS `one_tips`;
+CREATE TABLE `one_tips` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `img_url` varchar(255) DEFAULT NULL,
+  `text` varchar(255) DEFAULT NULL,
+  `img_type` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Records of one_tips
+-- ----------------------------
+INSERT INTO `one_tips` VALUES ('1', 'http://image.wufazhuce.com/Fo-CYfiARndoDysTnNjEADy2t19s', '如果一个人想要做一件真正忠于自己内心的事情，那么往往只能一个人独自去做。', '摄影');
