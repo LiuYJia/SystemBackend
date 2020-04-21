@@ -7,6 +7,18 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">昵称</label>
+            <div class="layui-input-block">
+                <input type="text" name="nickName" value="<%= result.nick_name %>" required  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-block">
+                <input type="text" name="email" value="<%= result.email %>" required  lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">用户名</label>
             <div class="layui-input-block">
                 <input type="text" name="userName" value="<%= result.name %>" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">

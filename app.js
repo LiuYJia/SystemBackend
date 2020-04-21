@@ -7,17 +7,15 @@ var session = require('express-session');
 var spawn = require('child_process').spawn;
 var routes = require('./routes');
 var app = express();
-console.log(__dirname)
-
 
 //子进程爬取ONE信息
-var child = spawn('node',['./main.js'])
-child.stdout.on('data', function (data) {
-  console.log('stdout: ' + data);
-});
-child.stderr.on('data', function (data) {
-  console.log('stderr: ' + data);
-});
+// var child = spawn('node',['./main.js'])
+// child.stdout.on('data', function (data) {
+//   console.log('stdout: ' + data);
+// });
+// child.stderr.on('data', function (data) {
+//   console.log('stderr: ' + data);
+// });
 
 
 // view engine setup

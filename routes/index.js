@@ -9,7 +9,7 @@ router.use('/error', require('./backend/error'));// 404
 //前端请求只需验证请求源
 router.get('*',function(req,res,next){
     console.log(req.headers)
-    if(req.headers.origin!='http://localhost:8080'){
+    if(req.headers.origin&&req.headers.origin!='http://localhost:8080'){
         res.redirect('/error')
         return;
     }

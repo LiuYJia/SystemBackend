@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80019
 File Encoding         : 65001
 
-Date: 2020-04-20 20:52:39
+Date: 2020-04-21 19:56:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,13 +23,15 @@ CREATE TABLE `admin` (
   `id` int NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
+  `nick_name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES ('1', 'admin', '11111');
+INSERT INTO `admin` VALUES ('1', 'admin', '11111', 'HelloWorld', '1158502533@qq.com');
 
 -- ----------------------------
 -- Table structure for article_list
@@ -49,19 +51,7 @@ CREATE TABLE `article_list` (
 -- ----------------------------
 -- Records of article_list
 -- ----------------------------
-INSERT INTO `article_list` VALUES ('1', '测试1111', '123', '2020-04-17 17:11:04', 'Liu', '1', '2');
-INSERT INTO `article_list` VALUES ('8', '大分公司的', '阿萨德', '2020-04-16 16:59:28', '阿斯顿撒', '7', '1');
-INSERT INTO `article_list` VALUES ('9', '的撒发', '阿萨', '2020-04-14 17:01:02', 'asda', '5', '2');
-INSERT INTO `article_list` VALUES ('10', '公司', '的', '2020-04-30 17:00:22', '的首付多少', '6', '1');
-INSERT INTO `article_list` VALUES ('11', '但是个税', '大师傅干啥', '2020-04-19 17:01:11', '阿斯顿发然', '3', '2');
-INSERT INTO `article_list` VALUES ('12', '1', 'aaaaaaa', '2020-04-16 20:04:17', 'LiuYJia', '0', '1');
-INSERT INTO `article_list` VALUES ('13', '1', 'aaaaaaa', '2020-04-16 20:07:04', 'LiuYJia', '0', '1');
 INSERT INTO `article_list` VALUES ('14', '阿发', '# hahah\n- 列表\n### 你好\n[TOCM]', '2020-04-16 20:08:06', 'LiuYJia', '0', '2');
-INSERT INTO `article_list` VALUES ('15', '1', '# hahah\n- 列表\n### 你好\n[TOCM]', '2020-04-16 20:08:47', 'LiuYJia', '0', '1');
-INSERT INTO `article_list` VALUES ('16', 'test', '111', '2020-04-16 21:01:15', 'LiuYJia', '0', '1');
-INSERT INTO `article_list` VALUES ('17', '1', '1111', '2020-04-17 16:57:46', 'LiuYJia', '0', '1');
-INSERT INTO `article_list` VALUES ('18', '1', '11111', '2020-04-17 17:07:19', 'LiuYJia', '0', '1');
-INSERT INTO `article_list` VALUES ('19', 'seotest', 'dassdaasdas', '2020-04-18 00:00:26', 'LiuYJia', '0', '11');
 
 -- ----------------------------
 -- Table structure for article_sort
@@ -96,6 +86,25 @@ CREATE TABLE `history_access` (
 INSERT INTO `history_access` VALUES ('1', '10');
 
 -- ----------------------------
+-- Table structure for msg_board
+-- ----------------------------
+DROP TABLE IF EXISTS `msg_board`;
+CREATE TABLE `msg_board` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) DEFAULT NULL,
+  `user_email` varchar(255) DEFAULT NULL,
+  `date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `content` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Records of msg_board
+-- ----------------------------
+INSERT INTO `msg_board` VALUES ('1', '张三', '123@qq.com', '2020-04-22 19:55:06', '不行，下一个。');
+INSERT INTO `msg_board` VALUES ('2', '例子', '888@163.com', '2020-05-22 19:55:46', '什么东西。');
+
+-- ----------------------------
 -- Table structure for one_tips
 -- ----------------------------
 DROP TABLE IF EXISTS `one_tips`;
@@ -110,4 +119,4 @@ CREATE TABLE `one_tips` (
 -- ----------------------------
 -- Records of one_tips
 -- ----------------------------
-INSERT INTO `one_tips` VALUES ('1', 'http://image.wufazhuce.com/Fo-CYfiARndoDysTnNjEADy2t19s', '如果一个人想要做一件真正忠于自己内心的事情，那么往往只能一个人独自去做。', '摄影');
+INSERT INTO `one_tips` VALUES ('1', 'http://image.wufazhuce.com/Fryzoo5ncUkEb1zG3hlzdVt8X9fj', '哲学家们只是用不同的方式解释世界，而问题在于改变世界。', '摄影');
