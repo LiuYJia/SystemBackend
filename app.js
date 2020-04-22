@@ -8,6 +8,8 @@ var spawn = require('child_process').spawn;
 var routes = require('./routes');
 var app = express();
 
+require('events').EventEmitter.defaultMaxListeners = 100
+
 //子进程爬取ONE信息
 // var child = spawn('node',['./main.js'])
 // child.stdout.on('data', function (data) {

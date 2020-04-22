@@ -26,14 +26,15 @@ router.post('/' , function(req,res,next){
     var id = req.body.id
     var nickName = req.body.nickName
     var email = req.body.email
+    var github = req.body.github
     var userName = req.body.userName
     var passWord = req.body.passWord1
 
     db.on('connection',function(err){})
 
     db.getConnection(function(err,connection){
-        var _sql = 'update admin set nick_name=?,email=?,name = ?,password = ? where id = ?';
-        connection.query(_sql,[nickName,email,userName,passWord,id],function(err,result){
+        var _sql = 'update admin set nick_name=?,email=?,github=?,name = ?,password = ? where id = ?';
+        connection.query(_sql,[nickName,email,github,userName,passWord,id],function(err,result){
             if(result.affectedRows==1){
                 res.send({
                     code:200,

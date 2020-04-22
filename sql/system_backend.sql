@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80019
 File Encoding         : 65001
 
-Date: 2020-04-21 19:56:18
+Date: 2020-04-22 20:33:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,13 +25,14 @@ CREATE TABLE `admin` (
   `password` varchar(255) DEFAULT NULL,
   `nick_name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
+  `github` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES ('1', 'admin', '11111', 'HelloWorld', '1158502533@qq.com');
+INSERT INTO `admin` VALUES ('1', 'admin', '11111', 'HelloWorld', '1158502533@qq.com', 'https://github.com/LiuYJia');
 
 -- ----------------------------
 -- Table structure for article_list
@@ -114,9 +115,11 @@ CREATE TABLE `one_tips` (
   `text` varchar(255) DEFAULT NULL,
   `img_type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of one_tips
 -- ----------------------------
 INSERT INTO `one_tips` VALUES ('1', 'http://image.wufazhuce.com/Fryzoo5ncUkEb1zG3hlzdVt8X9fj', '哲学家们只是用不同的方式解释世界，而问题在于改变世界。', '摄影');
+INSERT INTO `one_tips` VALUES ('2', 'http://image.wufazhuce.com/Fo-CYfiARndoDysTnNjEADy2t19s', '今天做不成的，明天也不会做好。一天也不能虚度，要下决心把可能的事情，一把抓住而紧紧抱住，有决心就不会任其逃去，而且必然要贯彻实行。', '摄影');
+INSERT INTO `one_tips` VALUES ('3', 'http://image.wufazhuce.com/FrSGYFzI4WTECW5VYDSCceZSAfOb', '如果一个人想要做一件真正忠于自己内心的事情，那么往往只能一个人独自去做。', '摄影');

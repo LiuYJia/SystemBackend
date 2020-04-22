@@ -8,7 +8,7 @@ router.use('/error', require('./backend/error'));// 404
 
 //前端请求只需验证请求源
 router.get('*',function(req,res,next){
-    console.log(req.headers)
+
     if(req.headers.origin&&req.headers.origin!='http://localhost:8080'){
         res.redirect('/error')
         return;
@@ -19,12 +19,11 @@ router.get('*',function(req,res,next){
     next()
 })
 
-router.use('/getOneMsg', require('./frontend/getOneMsg.js'));// ONE
+router.use('/homeMsg', require('./frontend/homeMsg.js'));// ONE
 
 
 //管理系统请求验证来源以及是否登陆
 router.get('*',function(req,res,next){
-    console.log(req.headers.host)
     if(req.headers.host!='localhost:3000'){
         res.redirect('/error')
     }
