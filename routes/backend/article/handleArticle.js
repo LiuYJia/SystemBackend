@@ -113,8 +113,8 @@ router.post('/saveArticle' , function(req,res,next){
 
 router.post('/uploadImg',upload.single('editormd-image-file'), function(req,res,next){
     var imgName = req.file.filename
-    // var _url =  'http://'+req.headers.host+'/images/'+imgName
-    var _url = '/images/'+imgName
+    var _url =  'http://'+req.headers.host+'/images/'+imgName
+    // var _url = '/images/'+imgName
     res.send({
         success : 1, //0表示上传失败;1表示上传成功
         message : "successful",

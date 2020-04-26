@@ -187,7 +187,7 @@ function getAllDataAndSendMail(){
             HtmlData["todayOneData"] = data[0];
             HtmlData["weatherTip"] = data[1];
             HtmlData["threeDaysData"] = data[2];
-            sendMail(HtmlData)
+            // sendMail(HtmlData)
             saveDatabase(data[0])
         }
     ).catch(function(err){
@@ -212,13 +212,24 @@ function saveDatabase(data){
     var img_url = data.imgUrl
     var text = data.text
     var type = data.type
-    var _sql = 'update one_tips set img_url=?,text=?,img_type=? where id = 1'
+    var _sql = 'insert into one_tips (img_url,text,img_type) values (?,?,?)'
     var _sqlArr = [img_url,text,type]
     connection.query(_sql,_sqlArr,function(err,result){
       if(result.affectedRows==0){
         saveDatabase(data)
+      }else{
+        // deleteData(connection)
       }
     })
   })
-
+}
+function deleteData(connection){
+  connection.query('delete from one_tips where id = (select a.id from (select min(id) as id from one_tips) a)',function(err,result){
+    if(result.affectedRows==0){
+      deleteData(connection)
+    }else{
+      console.log('更新one成功……')
+    }
+    connection.release()
+  })
 }
