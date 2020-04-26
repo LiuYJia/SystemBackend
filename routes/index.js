@@ -7,13 +7,13 @@ router.use('/login', require('./backend/login'));// 登陆
 router.use('/error', require('./backend/error'));// 404
 
 //前端请求只需验证请求源
-router.get('*',function(req,res,next){
-    console.log(res)
+router.all('*',function(req,res,next){
+
     if(req.headers.origin&&req.headers.origin!='http://localhost:8080'){
         res.redirect('/error')
         return;
     }
-    
+
     //设置跨域
     res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');

@@ -3,16 +3,19 @@ var router = express.Router();
 var db = require('../../database/database')
 var getTime = require('../../method/method')
 
-router.get('/saveBoard',function(req,res){
+router.post('/saveBoard',function(req,res){
     var data = req.body
     console.log(data)
-    var _sqlArr = [getTime()]
-
+    var _sqlArr = [data.name,data.contact,getTime(),data.content]
+    console.log(getTime())
     db.on('connection',function(connection){})
     db.getConnection(function(err,connection){
+        console.log(err)
         var _sql = 'insert into msg_board (user_name,user_email,date,content) values (?,?,?,?)';
-        connection.query(_sql,function(err,result){
-           
+        connection.query(_sql,_sqlArr,function(err,result){
+            if(err){
+                console.log(err)
+            }
             res.send({
                 code:200,
                 result:result
