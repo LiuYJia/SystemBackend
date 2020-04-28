@@ -9,16 +9,21 @@ router.use('/error', require('./backend/error'));// 404
 //前端请求只需验证请求源
 router.all('*',function(req,res,next){
 
-    if(req.headers.origin&&req.headers.origin!='http://localhost:8080'){
-        res.redirect('/error')
-        return;
-    }
-
     //设置跨域
-    res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+    res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
     res.header('Access-Control-Allow-Methods', 'DELETE,PUT,POST,GET,OPTIONS');
-    next()
+
+    console.log(req.headers)
+    if(!req.headers.origin||(req.headers.origin&&req.headers.origin!='null'&&req.headers.origin!='http://localhost:8080')){
+        // res.send({
+        //     code:404,
+        //     msg:'页面蒸发了!'
+        // })
+        res.redirect('/error')
+    }else{
+        next()
+    }
 })
 
 router.use('/homeMsg', require('./frontend/homeMsg.js'));// 主页

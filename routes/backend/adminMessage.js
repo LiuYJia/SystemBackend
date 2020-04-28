@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require('../../database/database')
 
 router.get('/' , function(req,res,next){
+    
     db.on('connection',function(err,connection){})
 
     db.getConnection(function(err,connection){
