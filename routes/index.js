@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-router.use('/', require('./backend/login'));
 router.use('/login', require('./backend/login'));// 登陆
 
 router.use('/error', require('./backend/error'));// 404
@@ -9,17 +8,16 @@ router.use('/error', require('./backend/error'));// 404
 //前端请求只需验证请求源
 router.all('*',function(req,res,next){
 
+    console.log('*****fffffff*****')
+    console.log(req.header)
+    console.log('*****fffffff*****')
+    
     //设置跨域
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
     res.header('Access-Control-Allow-Methods', 'DELETE,PUT,POST,GET,OPTIONS');
 
-    console.log(req.headers)
-    if(!req.headers.origin||(req.headers.origin&&req.headers.origin!='null'&&req.headers.origin!='http://localhost:8080')){
-        // res.send({
-        //     code:404,
-        //     msg:'页面蒸发了!'
-        // })
+    if(req.headers.referer && req.headers.referer != 'http://localhost:3000/'){
         res.redirect('/error')
     }else{
         next()
@@ -35,6 +33,10 @@ router.use('/board', require('./frontend/board.js'));// 留言板
 //管理系统请求验证来源以及是否登陆
 router.get('*',function(req,res,next){
 
+    console.log('*****bbbbbbb*****')
+    console.log(req.header)
+    console.log('*****bbbbbbb*****')
+
     if(req.headers.host!='localhost:3000'){
         res.redirect('/error')
     }
@@ -44,7 +46,7 @@ router.get('*',function(req,res,next){
     if(_isLogin){
         next()
     }else{
-        res.redirect('/')
+        res.redirect('/login')
     }
     
 })
