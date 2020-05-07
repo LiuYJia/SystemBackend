@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var crypto = require("crypto");
+var md5 = crypto.createHash("md5");
 var db = require('../../database/database')
 
 router.get('/' , function(req,res,next){
@@ -34,7 +36,8 @@ router.post('/' , function(req,res,next){
 
     db.getConnection(function(err,connection){
         var _sql = 'update admin set nick_name=?,email=?,github=?,name = ?,password = ? where id = ?';
-        connection.query(_sql,[nickName,email,github,userName,passWord,id],function(err,result){
+        var newPass = md5.update(passWord).digest("hex");
+        connection.query(_sql,[nickName,email,github,userName,newPass,id],function(err,result){
             if(result.affectedRows==1){
                 res.send({
                     code:200,

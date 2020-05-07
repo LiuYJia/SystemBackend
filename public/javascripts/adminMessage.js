@@ -1,8 +1,7 @@
 layui.use('form', function(){
     var form = layui.form;
     form.on('submit(adminMessageSave)', function(data){
-
-        if(data.field.password1 != data.field.password2){
+        if(data.field.passWord1 != data.field.passWord2){
             layer.msg('两次密码不一致', {icon: 5});
             return;
         }
@@ -19,7 +18,7 @@ layui.use('form', function(){
                 }
             }
         });
-        console.log(data.field)
+        console.log()
         //自定义验证规则
         form.verify({
             username: function(value){

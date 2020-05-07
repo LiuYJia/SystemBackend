@@ -2,6 +2,26 @@ var express = require('express');
 var router = express.Router();
 var db = require('../../database/database')
 
+router.get('/historyAccess',function(req,res){
+    db.on('connection',function(){})
+    db.getConnection(function(err,connection){
+        connection.query('select * from one_tips',function(err,result){
+            if(err){
+                res.send({
+                    code:400,
+                    result:[]
+                })
+                return;
+            }
+            res.send({
+                code:200,
+                result:result
+            })
+            connection.release()
+        })
+    })
+})
+
 router.get('/getOneMsg',function(req,res){
     db.on('connection',function(){})
     db.getConnection(function(err,connection){
