@@ -9,7 +9,6 @@ router.get('/' , function(req,res,next){
     db.getConnection(function(err,connection){
         var _sql = 'select * from admin'
         connection.query(_sql,function(err,result){
-            console.log(JSON.parse(JSON.stringify(result))[0])
             res.render('index', {
                 title: '设置-个人资料',
                 page:'adminMessage',

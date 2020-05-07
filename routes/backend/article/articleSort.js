@@ -7,7 +7,6 @@ router.get('/' , function(req,res,next){
     db.getConnection(function(err,connection){
         var _sql = 'select * from article_sort';
         connection.query(_sql,function(err,result){
-            console.log(result)
             res.render('index', {
                 title: '文章管理-文章分类',
                 page:'articleSort',
@@ -25,7 +24,6 @@ router.post('/addSort' , function(req,res,next){
     db.getConnection(function(err,connection){
         var _sql = 'insert into article_sort (sort) values (?)';
         connection.query(_sql,[sort],function(err,result){
-            console.log(result)
             if(result.affectedRows!=0){
                 res.send({
                     code:200,
@@ -48,7 +46,6 @@ router.post('/deleteSort' , function(req,res,next){
     db.getConnection(function(err,connection){
         var _sql = 'delete from article_sort where id = ?';
         connection.query(_sql,[id],function(err,result){
-            console.log(result)
             if(result.affectedRows!=0){
                 res.send({
                     code:200,

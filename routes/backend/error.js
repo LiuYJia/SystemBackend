@@ -6,10 +6,6 @@ router.get('/' , function(req,res,next){
         title:'404',
         page:'404'
     })
-    // res.send({
-    //     code:404,
-    //     msg:'页面蒸发了'
-    // })
 })
 
 module.exports = router;

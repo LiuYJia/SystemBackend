@@ -7,7 +7,6 @@ router.get('/' , function(req,res,next){
     db.getConnection(function(err,connection){
         var _sql = 'select * from article_sort';
         connection.query(_sql,function(err,result){
-            console.log(result)
             res.render('index', {
                 title: '文章管理-文章列表',
                 page:'articleList',
@@ -20,7 +19,6 @@ router.get('/' , function(req,res,next){
 })
 
 router.get('/getList' , function(req,res,next){
-    console.log(req.headers)
     if(req.query.key){
         var title = req.query.key.title
         var sort = req.query.key.sort
@@ -61,9 +59,7 @@ router.post('/delelte' , function(req,res,next){
     db.on('connection',function(){})
     db.getConnection(function(err,connection){
         var _sql = 'delete from article_list where id in ('+ids+')';
-        console.log(_sql)
         connection.query(_sql,function(err,result){
-            console.log(result)
             if(result.affectedRows!=0){
                 res.send({
                     code:200,

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80019
 File Encoding         : 65001
 
-Date: 2020-04-27 19:34:40
+Date: 2020-04-30 19:07:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,11 +21,11 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `id` int NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `nick_name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `github` varchar(255) DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nick_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `github` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -40,10 +40,10 @@ INSERT INTO `admin` VALUES ('1', 'admin', '11111', 'L', '1158502533@qq.com', 'ht
 DROP TABLE IF EXISTS `article_list`;
 CREATE TABLE `article_list` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
-  `content` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `content` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `author` varchar(255) DEFAULT NULL,
+  `author` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `browse_times` int DEFAULT '0',
   `sort_id` int DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -76,7 +76,7 @@ INSERT INTO `article_list` VALUES ('36', '诺克萨斯000', '&emsp;&emsp;德玛�
 DROP TABLE IF EXISTS `article_sort`;
 CREATE TABLE `article_sort` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `sort` varchar(255) DEFAULT NULL,
+  `sort` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -108,10 +108,10 @@ INSERT INTO `history_access` VALUES ('1', '10');
 DROP TABLE IF EXISTS `msg_board`;
 CREATE TABLE `msg_board` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(255) DEFAULT NULL,
-  `user_email` varchar(255) DEFAULT NULL,
+  `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `content` varchar(500) DEFAULT NULL,
+  `content` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -130,11 +130,11 @@ INSERT INTO `msg_board` VALUES ('5', '哈哈哈', '11@qq.com', '2020-04-27 19:06
 DROP TABLE IF EXISTS `one_tips`;
 CREATE TABLE `one_tips` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `img_url` varchar(255) DEFAULT NULL,
-  `text` varchar(255) DEFAULT NULL,
-  `img_type` varchar(255) DEFAULT NULL,
+  `img_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `img_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of one_tips
@@ -142,3 +142,4 @@ CREATE TABLE `one_tips` (
 INSERT INTO `one_tips` VALUES ('16', 'http://image.wufazhuce.com/FrIXn6UeYcjax44F8eYOcvR3eWLq', '如果不知道自己想要干什么，就先工作。只要工作，就可以得到米、酱、酱油、朋友和信任。可以一边工作，一边寻找真正想干的事，千万不要游手好闲。', '摄影');
 INSERT INTO `one_tips` VALUES ('17', 'http://image.wufazhuce.com/FsXiQJZ4Jt8mn7szAUFgkxjdNYwu', '永远年轻，永远热泪盈眶。', '摄影');
 INSERT INTO `one_tips` VALUES ('18', 'http://image.wufazhuce.com/FrSGYFzI4WTECW5VYDSCceZSAfOb', '今天做不成的，明天也不会做好。一天也不能虚度，要下决心把可能的事情，一把抓住而紧紧抱住，有决心就不会任其逃去，而且必然要贯彻实行。', '摄影');
+INSERT INTO `one_tips` VALUES ('19', 'http://image.wufazhuce.com/FnTZrZAil8kGLXhMc5lOXvW9zybF', '我要很多很多的爱。如果没有爱，那么就要很多很多的钱，如果两件都没有，有健康也是好的。', '摄影');

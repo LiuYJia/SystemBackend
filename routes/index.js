@@ -9,19 +9,20 @@ router.use('/error', require('./backend/error'));// 404
 router.all('*',function(req,res,next){
 
     console.log('*****fffffff*****')
-    console.log(req.header)
+    console.log(req.headers)
     console.log('*****fffffff*****')
-    
     //设置跨域
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
     res.header('Access-Control-Allow-Methods', 'DELETE,PUT,POST,GET,OPTIONS');
-
-    if(req.headers.referer && req.headers.referer != 'http://localhost:3000/'){
-        res.redirect('/error')
-    }else{
-        next()
-    }
+    // if((req.headers.referer && req.headers.referer != 'http://59.110.66.89:3000/')&&(req.headers.origin && req.headers.origin != 'http://localhost:8080')){
+    //     console.log('aaaaaaaaaaaa')
+    //     res.redirect('/error')
+    // }else{
+    //     console.log('bbbbbbbbbbb')
+    //     next()
+    // }
+    next()
 })
 
 router.use('/homeMsg', require('./frontend/homeMsg.js'));// 主页
@@ -34,12 +35,12 @@ router.use('/board', require('./frontend/board.js'));// 留言板
 router.get('*',function(req,res,next){
 
     console.log('*****bbbbbbb*****')
-    console.log(req.header)
+    console.log(req.headers)
     console.log('*****bbbbbbb*****')
 
-    if(req.headers.host!='localhost:3000'){
-        res.redirect('/error')
-    }
+    // if(req.headers.host!='59.110.66.89:3000'){
+    //     res.redirect('/error')
+    // }
 
     //已登录则匹配管理系统路由
     var _isLogin = req.cookies.user

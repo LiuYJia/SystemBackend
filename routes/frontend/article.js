@@ -61,7 +61,7 @@ router.get('/getArticleList',function(req,res){
             if(req.query.isRecommend){
                 res.send({
                     code: 200,
-                    result: result.splice(0,9)
+                    result: result.splice(0,10)
                 })
             }else{
                 var _length = result.length
