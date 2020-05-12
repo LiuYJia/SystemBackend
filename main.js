@@ -18,20 +18,19 @@ let EmianService = "qq";
 //发送者邮箱账户SMTP授权码
 let EamilAuth = {
   user: "1158502533@qq.com",
-  pass: "hqqwioojnrkmijha"
+  pass: "******"
 };
 //发送者昵称与邮箱地址
 let EmailFrom = '"_Liu" <1158502533@qq.com>';
 
 //接收者邮箱地
 let EmailTo = "1158502533@qq.com";
-// let EmailTo = "1367668557@qq.com";
 //邮件主题
 let EmailSubject = "你好。";
 
 //每日发送时间
-let EmailHour = 6;
-let EmialMinminute= 15;
+let EmailHour = 10;
+let EmialMinminute= 00;
 
 // 爬取数据的url
 const OneUrl = "http://wufazhuce.com/";
@@ -187,7 +186,7 @@ function getAllDataAndSendMail(){
             HtmlData["todayOneData"] = data[0];
             HtmlData["weatherTip"] = data[1];
             HtmlData["threeDaysData"] = data[2];
-            // sendMail(HtmlData)
+            sendMail(HtmlData)
             saveDatabase(data[0])
         }
     ).catch(function(err){
@@ -200,11 +199,11 @@ let rule = new schedule.RecurrenceRule();
 rule.dayOfWeek = [0, new schedule.Range(1, 6)];
 rule.hour = EmailHour;
 rule.minute = EmialMinminute;
-// let j = schedule.scheduleJob(rule, function() {
-//   console.log("定时邮件已执行……");
-//   getAllDataAndSendMail();
-// });
-getAllDataAndSendMail();
+let j = schedule.scheduleJob(rule, function() {
+  console.log("定时邮件已执行……");
+  getAllDataAndSendMail();
+});
+// getAllDataAndSendMail();
 
 function saveDatabase(data){
   db.on('connection',function(err){})
@@ -218,7 +217,7 @@ function saveDatabase(data){
       if(result.affectedRows==0){
         saveDatabase(data)
       }else{
-        // deleteData(connection)
+        deleteData(connection)
       }
     })
   })
