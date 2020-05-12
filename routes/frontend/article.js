@@ -29,12 +29,12 @@ router.get('/getArticleDetail',function(req,res){
     db.getConnection(function(err,connection){
         var _sql = 'select al.*,sort.sort from article_list al left join article_sort sort on al.sort_id = sort.id where al.id = ?';
         connection.query(_sql,[id],function(err,result){
+            var _sql2 = 'update article_list set browse_times = browse_times+1 where id = ?'
             res.send({
                 code:200,
                 result:result
             })
-            var _sql2 = 'update article_list set browse_times = browse_times+1 where id = ?'
-            connection.query(_sql2,[id],function(err,result){
+            connection.query(_sql2,[id],function(err,result2){
                 connection.release()
             })
             
@@ -69,9 +69,6 @@ router.get('/getArticleList',function(req,res){
             }else{
                 var _length = result.length
                 var _result = result.splice(_start,limit)
-                _result.forEach(ele => {
-                    ele.date = new Date(ele.date).toLocaleString()
-                });
                 res.send({
                     code: 200,
                     count: _length,

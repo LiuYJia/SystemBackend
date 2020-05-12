@@ -76,7 +76,8 @@ router.post('/saveArticle' , function(req,res,next){
         id:req.body.id,
         title:req.body.title,
         content:req.body['myEditor-markdown-doc'],
-        date:getTime(),
+        // date:getTime(),
+        date:new Date(),
         author:'LiuYJia',
         sort:req.body.sort
     }
